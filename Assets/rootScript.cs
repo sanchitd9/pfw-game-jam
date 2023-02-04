@@ -5,6 +5,8 @@ using UnityEngine;
 public class rootScript : MonoBehaviour
 {
     public float speed = 10f;
+    public float minX;
+    public float maxX;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,7 @@ public class rootScript : MonoBehaviour
     void Update()
     {
         float deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        float newXpos = transform.position.x + deltaX;
+        float newXpos = Mathf.Clamp(transform.position.x + deltaX, minX, maxX);
         transform.position = new Vector2(newXpos, transform.position.y);
     }
 }
